@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript RSA</title>
+    <script type="text/javascript" src="http://www.ohdave.com/BigInt.js"></script></script>
+    <script type="text/javascript" src="http://www.ohdave.com/RSA.js"></script></script>
+    <script type="text/javascript" src="http://www.ohdave.com/Barrett.js"></script></script>
+</head>
+<body>
+    <script type="text/javascript">
+        //公钥加密明文
+        setMaxDigits(19);
+        var publicKey = "25065286b2627846f19411522364326d";
+        var key1 = new RSAKeyPair("10001", "", publicKey);
+        var password = "jack1234";
+        var encryPssword = encryptedString(key1, password);
+        alert(encryPssword);
+
+        //私钥解密
+        var privateKey = "d3c495c2580d606089f1cbab136f071";
+        var key2 = new RSAKeyPair("10001", privateKey, publicKey);
+        var decryptedPssword = decryptedString(key2, encryPssword);
+        alert(decryptedPssword);
+    </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+# Author:wangdexin
+
+
+import requests,re
+import json
+
+params2 = {
+    "__EVENTTARGET":"lnkBtnNext",
+    "__EVENTARGUMENT":"",
+    "__VIEWSTATE":"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",
+
+    "__EVENTVALIDATION":"jmFDkEQ+HqDINesN8Vo6X9rWzIoesZEhntLVWViHge3tqL9yD9Wa/0PFk/7RjtAeNq2IvTvvWzq9fAz+X8SxzNMBzE+mPWwoUnvaASGoYHMrwUZXiG2Xsx7N60h2VUHYmYtLFdrnunbBJizZq2Lj2nqdIeUMzulWuD/tH2fkvoy9O3ACJmV7jQTaJWut9ThliOysu5IPxi9t1PWDV3ghFvs1AEjPThB84j68ExpkIc86jxVDQNS4xYaeARTgqGdQ5Rgf83v98qlHdrlyJXXC00EgSxieAOtX800h4Vhd6MA=",
+    "wucsearch$searchtd":""
+}
+headers2 = {
+# POST /hwsj.html HTTP/1.1
+'Host': 'www.cbfau.com',
+'Connection': 'keep-alive',
+'Content-Length': '5795',
+'Cache-Control': 'max-age=0',
+'Origin': 'http://www.cbfau.com',
+'Upgrade-Insecure-Requests': '1',
+'Content-Type': 'application/x-www-form-urlencoded',
+'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36',
+'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+'Referer': 'http://www.cbfau.com/hwsj.html',
+'Accept-Encoding': 'gzip, deflate',
+'Accept-Language': 'zh-CN,zh;q=0.9',
+'Cookie': 'Hm_lvt_3210d5a96eea563944a603c7b0ff64d5=1544084469; Hm_lpvt_3210d5a96eea563944a603c7b0ff64d5=1544090842'
+
+    # "Host":"www.cbfau.com",
+    # "Origin":"http://www.cbfau.com",
+    # "Referer":"http://www.cbfau.com/hwsj.html",
+    # "Upgrade-Insecure-Requests":"1",
+    # "Cookie":"Hm_lvt_3210d5a96eea563944a603c7b0ff64d5=1544084469; Hm_lpvt_3210d5a96eea563944a603c7b0ff64d5=1544088729",
+    # 'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36'
+}
+
+
+
+
+
+def chinanews():
+    url = 'http://www.cbfau.com/hwsj.html'
+    session = requests.session()
+    session.get(url)
+    print(session.cookies)
+
+
+
+    html = session.post(url,data=json.dumps(params2), headers=headers2)
+    # print(html.text)
+
+
+
+
+
+chinanews()
