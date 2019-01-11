@@ -1,0 +1,19 @@
+
+import requests
+
+
+url = 'https://beijing.anjuke.com/v3/ajax/broker/phone/?broker_id=6305401&token=59f90746f9369fbf3343021dea6c8061&prop_id=1342759685&prop_city_id=14&house_type=1&captcha='
+header = {
+    'accept':'application/json, text/javascript, */*; q=0.01',
+    'accept-encoding':'gzip, deflate, br',
+    'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8',
+    # 'cookie': 'aQQ_ajkguid=FBCD75C3-BE94-F25B-60E6-EF8E9D44654F; 58tj_uuid=0a8a3ae1-68ee-48b4-89e5-bb903b5cb8a3; als=0; _ga=GA1.2.1708096478.1530805412; isp=true; wmda_uuid=9fc3bd3a5eae9aeff88220cb4a39daa6; wmda_new_uuid=1; wmda_visited_projects=%3B6289197098934; lps=http%3A%2F%2Fwww.anjuke.com%2F%3Fpi%3DPZ-baidu-pc-all-logo%7Chttps%3A%2F%2Fwww.baidu.com%2Fs%3Fwd%3D%25E5%25AE%2589%25E5%25B1%2585%25E5%25AE%25A2%26rsv_spt%3D1%26rsv_iqid%3D0xd817e1360000d4a0%26issp%3D1%26f%3D8%26rsv_bp%3D0%26rsv_idx%3D2%26ie%3Dutf-8%26tn%3Dbaiduhome_pg%26rsv_enter%3D1%26rsv_sug3%3D5%26rsv_sug1%3D9%26rsv_sug7%3D101; twe=2; sessid=ED0096A2-0AA3-2223-04D3-861459334A85; ANJUKE_BUCKET=pc-home%3AErshou_Web_Home_Home-a; _gid=GA1.2.23056908.1534258519; lp_lt_ut=ea9a80e7c98ef239d37a112f76fb0ff6; Hm_lvt_c5899c8768ebee272710c9c5f365a6d8=1532625593,1534258533; Hm_lpvt_c5899c8768ebee272710c9c5f365a6d8=1534258533; ajk_member_captcha=6eed56c9749b15f5620dc1771ac772de; ctid=14; __xsptplusUT_8=1; wmda_session_id_6289197098934=1534263411573-c47b1f26-f74a-eae6; init_refer=https%253A%252F%252Fwww.baidu.com%252Fbaidu.php%253Fsc.Kf0000jA5uApXoP2PJoO_-IhtpeVtdgBEbwwKdJeksNHSsARC3QB6nBzQ32nySQw-jOsrSl7F7C6bbeT-2zxa4H5FCiwmvKfXJd3HGWS8pZcvKorwfA2Khx5awMBmwLC6r5YpTTSO505Go-T2EVeoPeJi6CM8IEVb9iOEpeJANKcjOZ4U0.7Y_NR2Ar5Od66EiO2OP4nkuTZp-DDUP7nZxAqBqM761s33TqSg5fYr1urEUsmhrrSz81ukeQrMFdsRP5QfHPGmsGlTr1u9Ed3Re_rSZjxu9HvmUvTQ5W9HvmUvTrzZaMGsePSZux9HY3Ih1jxoyFWIuuuuubo4phgT85R_nYQZZx83dJ.U1Yz0ZDqmy4JmhkoufKspynqnfKY5UXOVIBzSoUSzVpLEsKGUHYznjf0u1d-Tv7Bpyfs0ZNG5yF9pywd0ZKGujYk0APGujYs0AdY5HDsnHIxnH0krNtknjfYg1nvnjD0pvbqn0KzIjYzn1f0uy-b5fKBpHYznjwxnHRd0AdW5HTLnW04rHTYrNtknj0kg1DzrjcdrjT3PW7xn0KkTA-b5H00TyPGujYs0ZFMIA7M5H00mycqn7ts0ANzu1Ys0ZKs5HDLn1mzPj64nW00UMus5H08nj0snj0snj00Ugws5H00uAwETjYs0ZFJ5H00uANv5gKW0AuY5H00TA6qn0KET1Ys0AFL5HDs0A4Y5H00TLCq0ZwdT1YkPW0YPjfsnjndnHR4P1R1njDYrfKzug7Y5HDdn1fzn161nH6YP1m0Tv-b5yDknhcLmHDknj0snhRzPyn0mLPV5HwjwWm3rRnzrHfzPYfLnjn0mynqnfKsUWYs0Z7VIjYs0Z7VT1Ys0ZGY5H00UyPxuMFEUHYsg1KxnH0YP-ts0Aw9UMNBuNqsUA78pyw15HKxn7tsg100TA7Ygvu_myTqn0Kbmv-b5Hcvrjf1PHfdP6K-IA-b5iYk0A71TAPW5H00IgKGUhPW5H00Tydh5HDv0AuWIgfqn0KhXh6qn0Khmgfqn0KlTAkdT1Ys0A7buhk9u1Yk0Akhm1Ys0APzm1YYrHT3nf%2526ck%253D4054.7.66.184.364.210.185.506%2526shh%253Dwww.baidu.com%2526sht%253D50000021_hao_pg%2526us%253D2.0.1.0.0.0.0.101%2526ie%253Dutf-8%2526f%253D8%2526srcqid%253D2299887043352691485%2526tn%253D50000021_hao_pg%2526wd%253Danjblke%2526oq%253Danjblke%2526rqlang%253Dcn%2526sc%253DUWd1pgw-pA7EnHc1FMfqnHR1Pjc1P1bzn1TvPauW5y99U1Dznzu9m1Yzrjb3rjT4rjck%2526ssl_sample%253Ds_11%25252Cs_50%25252Cs_53%2526bc%253D110101; new_uv=6; _gat=1; browse_comm_ids=779079; propertys=m7g005-pdg1vd_miu41z-pdfy3s_; __xsptplus8=8.13.1534263411.1534263419.3%232%7Cwww.baidu.com%7C%7C%7Canjblke%7C%23%23-PYSXC5GRwOJ85KMVLumUlBRRGZjvao8%23; new_session=0',
+    # 'referer':'https://beijing.anjuke.com/prop/view/A1342759685?from=filter&spread=commsearch_p&position=2&kwtype=filter&now_time=1534238321',
+    'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.62 Safari/537.36',
+    # 'x-requested-with': 'XMLHttpRequest'
+}
+session = requests.session()
+session.get('https://shanghai.anjuke.com/prop/view/A1365207046?from=filter&spread=commsearch_p&position=3&kwtype=filter&now_time=1534236523')
+
+res = session.get(url,headers = header).content.decode()
+print(res)
